@@ -1,0 +1,45 @@
+## The Jacobian of cost function
+![The proof to this picture](http://om1hdizoc.bkt.clouddn.com/b12678222a016ce3ccb6f0bdc12166e2.png)
+
+The proof for the last statement is actually really simple.
+
+$$
+\begin{split}
+\nabla_{W^{[l]}}J(W,b) &= \frac{\partial J(w,b)}{\partial w^{[l]}} \\
+&= \frac{\partial J(w,b)}{\partial z^{[l]}}\frac{\partial z^{[l]}}{\partial w^{[l]}}
+= \frac{\partial J(w,b)}{\partial z^{[l]}}a^{[l-1]}
+\end{split}
+$$
+
+## Common combinations of cost function and activation function at the final layer
+- Given loss function = MSE, activation function = softmax (classifiying multiple things, output multiple neurons), the final layer gradient w.r.t to w is
+$$\nabla_{z^{[l]}}L = (a^{[l]}-y)sigmoid'(z^{[l]})$$
+$$\text{Notice a, y, z are all vectors}$$
+$$\text{This classification with the wrong loss function. it works but learns slowly}$$
+
+- Given loss function = cross-entropy, activation function = sigmoid (determing the probability of somthing, output only one neuron)
+$$\nabla_{z^{[l]}}L = (a^{[l]}-y)$$
+$$\text{Notice a, y are scalar values}$$
+
+- Given loss function = cross-entropy, activation function = softmax (classifiying multiple objects, output multiple neurons)
+$$\nabla_{z^{[l]}}L = (a^{[l]}-y)$$
+$$\text{Notice a, y are all vectors}$$
+$$\text{This classification with the correct loss function.}$$
+> This is why we prefer softmax over MSE, it gets rid of the sigmoid term since it might saturate at very large or very low value.
+> The derivation for the partial derivative of softmax w.r.t z is [here](https://deepnotes.io/softmax-crossentropy). Notice the derivation seems complicated but it is closely related to logistical regression in the binary case.
+
+
+- Given loss function = MSE, activation function = none (predicting continous signal), the final layer gradient w.r.t to w is
+$$\nabla_{z^{[l]}}L = (a^{[l]}-y)$$
+$$\text{Notice a, y are scalar values}$$
+
+### Other activation neuron
+See my other jupyter notbook about this part
+
+### Thoughts
+
+>- Question: How do you approach utilizing and researching machine learning techniques that are supported almost entirely empirically, as opposed to mathematically? Also in what situations have you noticed some of these techniques fail?
+>- Answer: You have to realize that our theoretical tools are very weak. Sometimes, we have good mathematical intuitions for why a particular technique should work. Sometimes our intuition ends up being wrong [...] The questions become: **how well does my method work on this particular problem, and how large is the set of problems on which it works well.**
+> - Question and answer with neural networks researcher *Yann LeCun*
+
+Indeed, we should not let the lack of a full theory stop us. We have powerful tool at hand, and can make a lot of of progress with these tools.
