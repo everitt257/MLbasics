@@ -43,3 +43,5 @@ See my other jupyter notbook about this part
 > - Question and answer with neural networks researcher *Yann LeCun*
 
 Indeed, we should not let the lack of a full theory stop us. We have powerful tool at hand, and can make a lot of of progress with these tools.
+
+All of this will be uploaded to a jupyter notebook for consistency.
